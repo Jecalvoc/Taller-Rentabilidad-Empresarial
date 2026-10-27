@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taller: La Mecánica de la Rentabilidad y el Ecosistema Empresarial</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/nunito/latin-400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/nunito/latin-700.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/nunito/latin-900.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/patrick-hand/latin-400.css">
+<style>
+:root{
+  --crema:#FFF8F0; --tinta:#2D3142; --tomate:#FF6B4A; --teal:#17B8A6;
+  --amarillo:#FFC145; --morado:#8B6CE7; --verde-pizarra:#2F4F3E;
+  --ok:#2E9E5B; --mal:#E05263; --sombra:0 10px 30px rgba(45,49,66,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:var(--crema);color:var(--tinta);line-height:1.6}
+.chalk{font-family:'Patrick Hand',cursive}
+
+/* ---------- HEADER ---------- */
+header{background:linear-gradient(135deg,#FF6B4A 0%,#FF9A5C 55%,#FFC145 100%);color:#fff;padding:28px 20px 60px;text-align:center;position:relative;overflow:hidden}
+header .blob{position:absolute;border-radius:50%;background:rgba(255,255,255,.14)}
+.b1{width:180px;height:180px;top:-70px;left:-50px}
+.b2{width:120px;height:120px;bottom:-50px;right:8%}
+.b3{width:70px;height:70px;top:20px;right:22%}
+header h1{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:900;text-shadow:0 3px 0 rgba(0,0,0,.15);position:relative;z-index:2}
+header p{max-width:680px;margin:8px auto 0;font-weight:700;opacity:.95;position:relative;z-index:2}
+.badad{display:inline-block;background:#fff;color:var(--tomate);border-radius:999px;padding:4px 16px;font-weight:900;margin-top:12px;position:relative;z-index:2;box-shadow:0 4px 0 rgba(0,0,0,.12)}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:12px;background:#fff;box-shadow:0 4px 18px rgba(45,49,66,.1);margin-top:-28px;border-radius:0 0 22px 22px}
+nav button{font-family:'Nunito';font-weight:900;font-size:.95rem;border:3px solid transparent;background:#F1EDE6;color:var(--tinta);padding:10px 18px;border-radius:14px;cursor:pointer;transition:.25s}
+nav button:hover{transform:translateY(-3px)}
+nav button.activo{background:var(--tinta);color:#fff;box-shadow:0 4px 0 var(--tomate)}
+
+/* ---------- PROGRESO ---------- */
+#panelProgreso{max-width:960px;margin:18px auto 0;padding:0 16px}
+.barra{background:#EDE6DA;border-radius:999px;height:18px;overflow:hidden;box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
+.barra>div{height:100%;width:0%;background:linear-gradient(90deg,var(--teal),var(--amarillo));border-radius:999px;transition:width .6s ease}
+.progreso-txt{display:flex;justify-content:space-between;font-weight:900;font-size:.85rem;margin-bottom:6px}
+
+/* ---------- LAYOUT ---------- */
+main{max-width:1000px;margin:0 auto;padding:20px 16px 60px}
+section.tab{display:none;animation:entrar .45s ease}
+section.tab.visible{display:block}
+@keyframes entrar{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.card{background:#fff;border-radius:22px;box-shadow:var(--sombra);padding:26px;margin:22px 0;border-bottom:6px solid transparent}
+.card.m2{border-bottom-color:var(--tomate)}
+.card.m3{border-bottom-color:var(--teal)}
+.card.reto{border-bottom-color:var(--morado)}
+h2{font-size:1.5rem;font-weight:900;display:flex;align-items:center;gap:10px;margin-bottom:6px}
+h3{font-size:1.15rem;font-weight:900;margin:14px 0 8px}
+.etiqueta{display:inline-block;font-size:.75rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:999px;color:#fff;margin-bottom:8px}
+.et-naranja{background:var(--tomate)} .et-verde{background:var(--teal)} .et-morado{background:var(--morado)} .et-amarillo{background:#E8A800}
+p.texto{font-size:1rem;margin:8px 0}
+.ilustracion{width:100%;border-radius:18px;overflow:hidden;border:4px solid #F1EDE6;background:#EAF6FF}
+.ilustracion svg{display:block;width:100%;height:auto}
+.pie-fig{font-size:.85rem;color:#8a8f9d;text-align:center;margin-top:6px;font-weight:700}
+
+/* ---------- DATOS DEL CASO ---------- */
+.datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px}
+.dato{border-radius:18px;padding:16px;color:#fff;text-align:center;box-shadow:0 5px 0 rgba(0,0,0,.12)}
+.dato .ico{font-size:1.8rem}
+.dato .lbl{font-size:.8rem;font-weight:900;text-transform:uppercase;letter-spacing:.5px;opacity:.9}
+.dato .val{font-size:1.35rem;font-weight:900}
+.d1{background:var(--tomate)} .d2{background:var(--teal)} .d3{background:var(--morado)}
+
+/* ---------- PIZARRA ---------- */
+.pizarra{background:var(--verde-pizarra);border:12px solid #8B5E3C;border-radius:14px;padding:24px;box-shadow:inset 0 0 40px rgba(0,0,0,.35),var(--sombra);position:relative}
+.pizarra::after{content:"🖍️";position:absolute;bottom:-4px;right:16px;font-size:1.6rem;transform:rotate(-20deg)}
+.paso{color:#F4FFF6;font-size:1.15rem;margin:12px 0;padding:10px 14px;border-left:4px dashed rgba(255,255,255,.35);opacity:0;transform:translateX(-14px);transition:.5s}
+.paso.muestra{opacity:1;transform:none}
+.paso b{color:#FFE9A8}
+.paso .res{color:#9BE8D8;font-weight:700}
+.btn{font-family:'Nunito';font-weight:900;border:none;border-radius:14px;padding:12px 22px;font-size:1rem;cursor:pointer;transition:.2s;box-shadow:0 5px 0 rgba(0,0,0,.18)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.btn:hover{filter:brightness(1.06)}
+.btn-tomate{background:var(--tomate);color:#fff}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-amarillo{background:var(--amarillo);color:var(--tinta)}
+.btn-morado{background:var(--morado);color:#fff}
+.btn-tinta{background:var(--tinta);color:#fff}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center}
+
+/* ---------- CALCULADORA ---------- */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
+@media(max-width:720px){.calc-grid{grid-template-columns:1fr}}
+.campo{margin-bottom:12px}
+.campo label{font-weight:900;font-size:.9rem;display:block;margin-bottom:4px}
+.campo input, .campo textarea, .campo select{width:100%;font-family:'Nunito';font-weight:700;font-size:1rem;padding:11px 14px;border:3px solid #E4DDD1;border-radius:12px;background:#FFFDF9;transition:.2s}
+.campo input:focus,.campo textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(23,184,166,.15)}
+.resultado{background:linear-gradient(160deg,#F2FFFC,#E4FBF6);border:3px dashed var(--teal);border-radius:18px;padding:18px;text-align:center}
+.resultado .grande{font-size:2.2rem;font-weight:900;color:var(--teal)}
+.resultado .sub{font-size:.95rem;font-weight:700;color:#4b6b64}
+.barras{margin-top:14px}
+.fila-barra{display:flex;align-items:center;gap:8px;margin:8px 0;font-weight:900;font-size:.85rem}
+.fila-barra .nom{width:130px;flex-shrink:0}
+.pista-barra{flex:1;background:#EDE6DA;border-radius:999px;height:22px;overflow:hidden}
+.pista-barra>div{height:100%;border-radius:999px;transition:width .8s ease;width:0%}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{background:#FFF3E2;border:2px solid var(--amarillo);color:#9a6b00;font-weight:900;font-size:.8rem;border-radius:999px;padding:6px 14px;cursor:pointer;transition:.2s}
+.chip:hover{background:var(--amarillo);color:#fff;transform:scale(1.05)}
+.chip.sel{background:var(--amarillo);color:#fff}
+
+/* ---------- EJERCICIO GUIADO ---------- */
+.mini-paso{background:#FFF6F2;border:3px solid #FFD9CC;border-radius:16px;padding:16px;margin:12px 0}
+.mini-paso.ok{background:#EFFBF2;border-color:#B9E8C7}
+.mini-paso.mal{animation:temblar .4s}
+@keyframes temblar{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.feedback{font-weight:900;margin-top:8px;font-size:.95rem;min-height:1.4em}
+.feedback.bien{color:var(--ok)} .feedback.mal{color:var(--mal)}
+.dato-curioso{background:#FFF9E6;border-left:6px solid var(--amarillo);border-radius:0 14px 14px 0;padding:14px 16px;margin-top:14px;font-size:.95rem}
+
+/* ---------- TABLA ESCENARIOS ---------- */
+table{width:100%;border-collapse:separate;border-spacing:0;margin-top:14px;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(45,49,66,.1);font-size:.95rem}
+th{background:var(--tinta);color:#fff;padding:12px;font-weight:900;text-align:left}
+td{background:#fff;padding:12px;border-top:2px solid #F1EDE6;vertical-align:top;font-weight:700}
+tr.fila-tabla{cursor:pointer;transition:.2s}
+tr.fila-tabla:hover td{background:#FFF6F2}
+.detalle td{background:#FAF7F0;font-weight:400;font-size:.9rem;color:#5a5f6e}
+.pill{display:inline-block;padding:3px 12px;border-radius:999px;font-size:.78rem;font-weight:900;color:#fff}
+.pill-verde{background:var(--ok)} .pill-naranja{background:#F08C2E} .pill-rojo{background:var(--mal)}
+.tu-idea{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.tu-idea input{flex:1;min-width:200px}
+.lista-ideas{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.idea{background:#EAF7FF;border:2px solid #9BD8F5;color:#16618a;border-radius:12px;padding:8px 14px;font-weight:700;font-size:.9rem;animation:entrar .3s}
+
+/* ---------- MÓDULO 3 ---------- */
+.plantilla-paso{background:#F2FFFC;border:3px solid #C9F0E9;border-radius:16px;padding:16px;margin:12px 0;position:relative}
+.plantilla-paso .num{position:absolute;top:-14px;left:16px;background:var(--teal);color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;box-shadow:0 3px 0 rgba(0,0,0,.15)}
+.plantilla-paso.guardado{background:#EFFBF2;border-color:#B9E8C7}
+.sello{position:absolute;top:10px;right:14px;font-size:1.4rem;display:none}
+.plantilla-paso.guardado .sello{display:block;animation:entrar .4s}
+.btn-mini{font-size:.82rem;padding:8px 14px;border-radius:10px}
+.pista-box{background:#FFF9E6;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:.9rem;display:none;border:2px dashed var(--amarillo)}
+.pista-box.abierta{display:block;animation:entrar .3s}
+
+/* ---------- DIAGRAMA SVG ---------- */
+.nodo{cursor:pointer;transition:.2s}
+.nodo:hover rect{filter:brightness(1.12)}
+.nodo rect{transition:.2s}
+#tooltipEco{background:var(--tinta);color:#fff;padding:10px 14px;border-radius:12px;font-size:.88rem;font-weight:700;max-width:280px;position:absolute;display:none;z-index:60;box-shadow:var(--sombra);pointer-events:none}
+
+/* ---------- ORDENAR ---------- */
+.orden-zona{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:14px}
+.tarjeta-orden{background:#fff;border:3px solid #E4DDD1;border-radius:16px;padding:14px;text-align:center;font-weight:900;cursor:pointer;transition:.2s;user-select:none}
+.tarjeta-orden:hover{transform:translateY(-4px);border-color:var(--morado)}
+.tarjeta-orden.elegida{opacity:.35;pointer-events:none;border-color:var(--ok)}
+.tarjeta-orden.error{border-color:var(--mal);animation:temblar .4s}
+.secuencia{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;min-height:64px;background:#F7F3EC;border-radius:16px;padding:12px;border:3px dashed #D9CFBE}
+.paso-seq{background:var(--morado);color:#fff;border-radius:12px;padding:10px 14px;font-weight:900;font-size:.85rem;animation:entrar .3s;display:flex;align-items:center;gap:8px}
+
+/* ---------- QUIZ ---------- */
+.pregunta{background:#fff;border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 4px 14px rgba(45,49,66,.08);border-left:6px solid var(--morado)}
+.pregunta .titulo-p{font-weight:900;margin-bottom:10px}
+.opcion{display:flex;align-items:center;gap:10px;padding:10px 14px;border:3px solid #EDE6DA;border-radius:12px;margin:8px 0;cursor:pointer;font-weight:700;transition:.2s;background:#FFFDF9}
+.opcion:hover{border-color:var(--morado);transform:translateX(4px)}
+.opcion.correcta{border-color:var(--ok);background:#EFFBF2}
+.opcion.incorrecta{border-color:var(--mal);background:#FDEFF1}
+.opcion .bolita{width:22px;height:22px;border-radius:50%;border:3px solid #C9C2B4;flex-shrink:0;transition:.2s}
+.opcion.correcta .bolita{border-color:var(--ok);background:var(--ok);box-shadow:inset 0 0 0 4px #fff}
+.opcion.incorrecta .bolita{border-color:var(--mal);background:var(--mal)}
+.nota-final{background:linear-gradient(135deg,#8B6CE7,#B49BFF);color:#fff;border-radius:20px;padding:24px;text-align:center;margin-top:20px;display:none}
+.nota-final .puntaje{font-size:3rem;font-weight:900}
+
+/* ---------- ESTRELLA / MODAL ---------- */
+.estrella-ganada{position:fixed;top:20%;left:50%;transform:translate(-50%,-50%) scale(0);background:#fff;border-radius:20px;padding:20px 34px;font-weight:900;font-size:1.2rem;box-shadow:0 20px 50px rgba(0,0,0,.25);z-index:200;text-align:center;transition:.3s;border-bottom:8px solid var(--amarillo)}
+.estrella-ganada.mostrar{transform:translate(-50%,-50%) scale(1)}
+#modalCuaderno{position:fixed;inset:0;background:rgba(45,49,66,.55);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
+#modalCuaderno.abierto{display:flex}
+.modal-caja{background:#FFFDF6;border-radius:20px;max-width:640px;width:100%;max-height:82vh;overflow:auto;padding:26px;box-shadow:0 30px 60px rgba(0,0,0,.3);position:relative}
+.modal-caja pre{font-family:'Patrick Hand',cursive;font-size:1.05rem;white-space:pre-wrap;background:#fff;border:2px dashed #D9CFBE;border-radius:12px;padding:16px;margin-top:10px}
+.cerrar-modal{position:absolute;top:12px;right:14px;background:var(--tinta);color:#fff;border:none;border-radius:50%;width:36px;height:36px;font-size:1.1rem;cursor:pointer;font-weight:900}
+#confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:400;display:none}
+footer{background:var(--tinta);color:#cfd3e0;text-align:center;padding:24px;font-weight:700;font-size:.9rem}
+.aviso{font-size:.85rem;color:#8a8f9d;font-weight:700;margin-top:8px}
+@media(max-width:600px){.pizarra{padding:16px}.paso{font-size:1rem}nav button{font-size:.8rem;padding:8px 12px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <h1>🛠️ Taller de Negocios: ¡Aprende Jugando!</h1>
+  <p>Módulo 2: La Mecánica de la Rentabilidad · Módulo 3: El Ecosistema Empresarial y sus Actores</p>
+  <span class="badad">👧👦 Para jóvenes de 12 a 14 años</span>
+</header>
+
+<nav>
+  <button data-tab="inicio" class="activo">🏠 Inicio</button>
+  <button data-tab="modulo2">🫓 Módulo 2: Rentabilidad</button>
+  <button data-tab="modulo3">🌄 Módulo 3: Ecosistema</button>
+  <button data-tab="reto">🏆 Reto Final</button>
+</nav>
+
+<div id="panelProgreso">
+  <div class="progreso-txt"><span>⭐ Tu progreso del taller</span><span id="txtEstrellas">0 / 6 estrellas</span></div>
+  <div class="barra"><div id="barraProgreso"></div></div>
+</div>
+
+<main>
+
+<!-- ================= INICIO ================= -->
+<section id="inicio" class="tab visible">
+  <div class="card m2">
+    <span class="etiqueta et-naranja">Bienvenida</span>
+    <h2>👋 ¡Hola, joven emprendedor!</h2>
+    <p class="texto">En este taller vas a descubrir <b>dos secretos</b> que usan las empresas de verdad en Latinoamérica:</p>
+    <div class="datos">
+      <div class="dato d1"><div class="ico">🫓</div><div class="lbl">Módulo 2</div><div class="val">¿Cuánto hay que vender para no perder dinero?</div></div>
+      <div class="dato d2"><div class="ico">🌄</div><div class="lbl">Módulo 3</div><div class="val">¿A quiénes afecta lo que decide una empresa?</div></div>
+      <div class="dato d3"><div class="ico">🏆</div><div class="lbl">Reto final</div><div class="val">¡Pon a prueba lo aprendido y gana estrellas!</div></div>
+    </div>
+    <h3>📌 ¿Qué necesitas?</h3>
+    <p class="texto">✔ Tu cuaderno y un lápiz (¡copiarás procedimientos como en el tablero!).<br>
+    ✔ Una calculadora (o la que está integrada en este taller).<br>
+    ✔ Ganas de trabajar en equipo y pensar como dueño de negocio.</p>
+    <div class="dato-curioso">💡 <b>Idea clave:</b> una empresa no solo gana dinero: también cuida (o afecta) a sus empleados, proveedores y a toda su comunidad. ¡Aquí aprenderás las dos cosas!</div>
+    <div class="acciones"><button class="btn btn-tomate" onclick="irTab('modulo2')">Empezar el Módulo 2 ➜</button></div>
+  </div>
+</section>
+
+<!-- ================= MÓDULO 2 ================= -->
+<section id="modulo2" class="tab">
+
+  <!-- CASO -->
+  <div class="card m2">
+    <span class="etiqueta et-naranja">Caso real de estudio</span>
+    <h2>🫓 Arepas Doña Luz — Caracas, Venezuela</h2>
+    <div class="ilustracion" id="svgArepas"></div>
+    <p class="pie-fig">Figura 1. El puesto de arepas de Doña Luz: cada arepa que vende le deja una ganancia… pero primero debe cubrir sus costos fijos.</p>
+    <p class="texto">Doña Luz vende arepas rellenas de queso en su puesto. Estos son los números de su negocio (¡anótalos en tu cuaderno!):</p>
+    <div class="datos">
+      <div class="dato d1"><div class="ico">🏷️</div><div class="lbl">Precio de venta</div><div class="val">Bs. 15.000 / arepa</div></div>
+      <div class="dato d2"><div class="ico">🌽</div><div class="lbl">Costo variable</div><div class="val">Bs. 6.000 / arepa</div><div class="lbl" style="text-transform:none">masarepa + queso + mano de obra</div></div>
+      <div class="dato d3"><div class="ico">🏠</div><div class="lbl">Costos fijos mensuales</div><div class="val">Bs. 4.500.000</div><div class="lbl" style="text-transform:none">arriendo + servicios</div></div>
+    </div>
+    <div class="dato-curioso">🤔 <b>¿Qué significa "costo variable"?</b> Es lo que cuesta hacer <i>cada</i> arepa (sube si haces más arepas). <b>¿Y "costo fijo"?</b> Es lo que Doña Luz paga <i>venda o no venda</i>: el arriendo del local y los servicios llegan cada mes, ¡le duela a quien le duela!</div>
+  </div>
+
+  <!-- ACTIVIDAD GUIADA: TABLERO -->
+  <div class="card m2">
+    <span class="etiqueta et-amarillo">Actividad guiada · Copia en tu cuaderno</span>
+    <h2>🧑‍🏫 El procedimiento paso a paso (como en el tablero)</h2>
+    <p class="texto">Presiona el botón para ir "escribiendo" cada paso, igual que hace el profesor. <b>Cópialos en tu cuaderno</b> mientras aparecen.</p>
+    <div class="pizarra chalk">
+      <div class="paso" id="paso1"><b>Paso 1 — Margen de Contribución Unitario</b><br>Mc = Precio − Costo Variable = 15.000 − 6.000 = <span class="res">Bs. 9.000</span><br><small style="color:#cfe8d4">👉 Cada arepa aporta Bs. 9.000 para pagar los costos fijos.</small></div>
+      <div class="paso" id="paso2"><b>Paso 2 — Punto de Equilibrio (unidades)</b><br>PE = Costos Fijos ÷ Margen Unitario = 4.500.000 ÷ 9.000 = <span class="res">500 arepas</span></div>
+      <div class="paso" id="paso3"><b>Paso 3 — ¿Qué significa?</b><br><span class="res">Doña Luz debe vender 500 arepas al mes</span> para no perder ni ganar.<br>Con la arepa 501… ¡empieza a ganar dinero! 🎉</div>
+      <div class="paso" id="paso4"><b>Resumen para el cuaderno:</b><br>📓 Mc = P − CV &nbsp;&nbsp;|&nbsp;&nbsp; 📓 PE = CF ÷ Mc</div>
+    </div>
+    <div class="acciones">
+      <button class="btn btn-amarillo" id="btnPaso" onclick="siguientePaso()">✏️ Escribir siguiente paso</button>
+      <button class="btn btn-teal" id="btnCopie" onclick="premioEstrella('tablero','📓 ¡Procedimiento copiado!')" disabled>✅ Ya lo copié en mi cuaderno</button>
+    </div>
+  </div>
+
+  <!-- CALCULADORA -->
+  <div class="card m2">
+    <span class="etiqueta et-naranja">Práctica con variaciones</span>
+    <h2>🧮 La Calculadora del Punto de Equilibrio</h2>
+    <p class="texto">Cambia los números y observa qué le pasa al negocio de Doña Luz. También puedes usar los <b>casos rápidos</b>:</p>
+    <div class="chips">
+      <button class="chip sel" onclick="preset(15000,6000,4500000,this)">🫓 Caso original</button>
+      <button class="chip" onclick="preset(15000,7200,4500000,this)">🌽 Masarepa +20%</button>
+      <button class="chip" onclick="preset(12000,6000,4500000,this)">🏷️ Precio −20% (Bs. 12.000)</button>
+      <button class="chip" onclick="preset(15000,6000,3600000,this)">💡 Ahorrando costos fijos</button>
+    </div>
+    <div class="calc-grid">
+      <div>
+        <div class="campo"><label>🏷️ Precio de venta (Bs.)</label><input type="number" id="inpPrecio" value="15000" min="1" oninput="calcular()"></div>
+        <div class="campo"><label>🌽 Costo variable por arepa (Bs.)</label><input type="number" id="inpCV" value="6000" min="0" oninput="calcular()"></div>
+        <div class="campo"><label>🏠 Costos fijos mensuales (Bs.)</label><input type="number" id="inpCF" value="4500000" min="0" oninput="calcular()"></div>
+      </div>
+      <div>
+        <div class="resultado">
+          <div class="sub">Margen de contribución por arepa</div>
+          <div class="grande" id="outMargen" style="color:var(--tomate)">Bs. 9.000</div>
+          <hr style="border:none;border-top:2px dashed #bfe6de;margin:12px 0">
+          <div class="sub">Punto de equilibrio</div>
+          <div class="grande" id="outPE">500 arepas</div>
+          <div class="sub" id="outMes">≈ 17 arepas al día (30 días)</div>
+        </div>
+      </div>
+    </div>
+    <div class="barras">
+      <h3>📊 Compara con el caso original (500 arepas)</h3>
+      <div class="fila-barra"><span class="nom">🫓 Original</span><div class="pista-barra"><div id="barBase" style="background:var(--teal)"></div></div><span id="lblBase">500</span></div>
+      <div class="fila-barra"><span class="nom">🔍 Tu caso</span><div class="pista-barra"><div id="barNuevo" style="background:var(--tomate)"></div></div><span id="lblNuevo">500</span></div>
+    </div>
+    <div id="avisoCalc" class="dato-curioso" style="display:none"></div>
+    <div class="acciones"><button class="btn btn-tomate" onclick="premioEstrella('calculadora','🧮 ¡Exploraste la calculadora!')">⭐ Terminé de explorar la calculadora</button></div>
+  </div>
+
+  <!-- EJERCICIO COLABORATIVO -->
+  <div class="card m2">
+    <span class="etiqueta et-verde">Ejercicio colaborativo</span>
+    <h2>🌽 ¿Y si la masarepa sube un 20%?</h2>
+    <p class="texto">¡Alerta en el mercado! La masarepa subió de precio. Resuelve los 3 pasos con tu equipo. Recuerda: si algo sube 20%, se multiplica por 1,20.</p>
+
+    <div class="mini-paso" id="mpA">
+      <b>Paso A:</b> Nuevo costo variable = 6.000 × 1,20 = <input type="number" id="respA" style="width:150px;display:inline-block;padding:6px 10px;border:3px solid #E4DDD1;border-radius:10px;font-family:Nunito;font-weight:900" placeholder="?"> Bs.
+      <button class="btn btn-teal btn-mini" onclick="chequear('A')">Comprobar</button>
+      <div class="feedback" id="fbA"></div>
+    </div>
+    <div class="mini-paso" id="mpB">
+      <b>Paso B:</b> Nuevo margen = 15.000 − (tu respuesta A) = <input type="number" id="respB" style="width:150px;display:inline-block;padding:6px 10px;border:3px solid #E4DDD1;border-radius:10px;font-family:Nunito;font-weight:900" placeholder="?"> Bs.
+      <button class="btn btn-teal btn-mini" onclick="chequear('B')">Comprobar</button>
+      <div class="feedback" id="fbB"></div>
+    </div>
+    <div class="mini-paso" id="mpC">
+      <b>Paso C:</b> Nuevo punto de equilibrio = 4.500.000 ÷ 7.800 ≈ <input type="number" id="respC" style="width:150px;display:inline-block;padding:6px 10px;border:3px solid #E4DDD1;border-radius:10px;font-family:Nunito;font-weight:900" placeholder="?"> arepas al mes
+      <button class="btn btn-teal btn-mini" onclick="chequear('C')">Comprobar</button>
+      <div class="feedback" id="fbC"></div>
+    </div>
+
+    <div class="dato-curioso">🔍 <b>Dato curioso para debatir:</b> con el aumento del <b>20%</b> el punto de equilibrio queda en ≈<b>577 arepas</b>. En la tabla del tablero aparece <b>625</b>, que corresponde a un aumento mayor (30%, costo variable de Bs. 7.800). ¡Los números cuentan historias! Discutan en clase: <i>¿por qué un pequeño cambio en el costo hace vender tantas arepas más?</i></div>
+  </div>
+
+  <!-- TABLA DE ESCENARIOS -->
+  <div class="card m2">
+    <span class="etiqueta et-naranja">Tabla de análisis de escenarios</span>
+    <h2>📋 Tres futuros posibles para Doña Luz</h2>
+    <p class="texto">Haz clic en cada fila para ver la matemática escondida detrás 👇</p>
+    <table>
+      <thead><tr><th>Escenario</th><th>Punto de equilibrio</th><th>Impacto en empleos</th></tr></thead>
+      <tbody>
+        <tr class="fila-tabla" onclick="toggleDetalle('det1',this)"><td>🫓 Sin cambios</td><td><b>500 arepas</b></td><td><span class="pill pill-verde">Estable</span></td></tr>
+        <tr class="detalle" id="det1" style="display:none"><td colspan="3">🧮 4.500.000 ÷ 9.000 = 500. Todo sigue igual: el negocio respira tranquilo y nadie pierde su trabajo.</td></tr>
+        <tr class="fila-tabla" onclick="toggleDetalle('det2',this)"><td>🌽 Sube el costo de la masarepa</td><td><b>625 arepas</b></td><td><span class="pill pill-naranja">Riesgo de recorte</span></td></tr>
+        <tr class="detalle" id="det2" style="display:none"><td colspan="3">🧮 Para llegar a 625, el margen baja a 7.200 (costo variable 7.800). Cada arepa aporta menos, así que hay que vender <b>125 arepas más al mes</b>. Si no se logra… Doña Luz podría pensar en recortar personal. 😟</td></tr>
+        <tr class="fila-tabla" onclick="toggleDetalle('det3',this)"><td>🏷️ Baja el precio de venta (a Bs. 12.000)</td><td><b>750 arepas</b></td><td><span class="pill pill-rojo">Mayor riesgo</span></td></tr>
+        <tr class="detalle" id="det3" style="display:none"><td colspan="3">🧮 12.000 − 6.000 = 6.000 de margen → 4.500.000 ÷ 6.000 = 750. Bajar el precio para "vender más" puede ser una trampa: ¡ahora necesita 250 arepas extra solo para quedar en paz!</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- REFLEXIÓN GRUPAL -->
+  <div class="card m2">
+    <span class="etiqueta et-verde">Reflexión grupal</span>
+    <h2>🤝 ¿Cómo absorber el aumento SIN despedir a nadie?</h2>
+    <p class="texto">En equipo, piensen soluciones creativas. Toca las ideas semilla para guardarlas en la pizarra de soluciones, o escriban las suyas:</p>
+    <div class="chips" id="chipsIdeas">
+      <button class="chip" onclick="agregarIdea('Reducir gastos no esenciales (ej. decoración navideña) 🎄✂️',this)">✂️ Recortar gastos no esenciales (como la decoración navideña)</button>
+      <button class="chip" onclick="agregarIdea('Negociar el precio de la masarepa con varios proveedores 🌽🤝',this)">🌽 Negociar con varios proveedores</button>
+      <button class="chip" onclick="agregarIdea('Crear combos: arepa + jugo, para subir el ingreso por cliente 🧃',this)">🧃 Vender combos (arepa + jugo)</button>
+      <button class="chip" onclick="agregarIdea('Ajustar un poquito el precio explicándolo a los clientes 💬',this)">💬 Ajustar el precio con honestidad</button>
+      <button class="chip" onclick="agregarIdea('Ofrecer arepas en eventos y pedidos grandes por encargo 🎉',this)">🎉 Pedidos grandes para eventos</button>
+    </div>
+    <div class="tu-idea">
+      <input type="text" id="inpIdea" placeholder="✍️ Escribe la idea de tu equipo…" onkeydown="if(event.key==='Enter')agregarIdeaPropia()">
+      <button class="btn btn-morado btn-mini" onclick="agregarIdeaPropia()">➕ Agregar</button>
+    </div>
+    <div class="lista-ideas" id="listaIdeas"></div>
+    <div class="acciones"><button class="btn btn-teal" id="btnIdeas" onclick="premioEstrella('reflexion','🤝 ¡Gran reflexión de equipo!')" disabled>⭐ Guardar nuestra reflexión (agrega 2+ ideas)</button></div>
+  </div>
+</section>
+
+<!-- ================= MÓDULO 3 ================= -->
+<section id="modulo3" class="tab">
+
+  <div class="card m3">
+    <span class="etiqueta et-verde">Estudio de caso</span>
+    <h2>☕ Café Altura — Chiapas, México</h2>
+    <div class="ilustracion" id="svgCafe"></div>
+    <p class="pie-fig">Figura 2. En las montañas de Chiapas, decenas de familias campesinas trabajan cada cosecha de Café Altura.</p>
+    <p class="texto">Los dueños de Café Altura tienen una decisión difícil sobre la mesa:</p>
+    <div class="dato-curioso" style="border-left-color:var(--teal);background:#F2FFFC">🤖 <b>La decisión:</b> comprar máquinas para <b>automatizar la cosecha</b> y reducir los costos laborales en un <b>30%</b>. Suena bueno para las finanzas… pero, ¿y las personas?</div>
+  </div>
+
+  <div class="card m3">
+    <span class="etiqueta et-verde">Plantilla de análisis grupal</span>
+    <h2>📝 Analiza el caso como un experto (copiada del tablero)</h2>
+    <p class="texto">Completa cada punto con tu equipo. ¿Se atascan? Usen el botón <b>💡 Ver pista</b>. Al guardar los 4 pasos ganas una estrella.</p>
+
+    <div class="plantilla-paso" id="tp1">
+      <div class="num">1</div><span class="sello">✅</span>
+      <h3 style="margin-top:6px">Actor afectado</h3>
+      <div class="campo"><textarea id="ta1" rows="2" placeholder="¿Quién sufre las consecuencias de la decisión?"></textarea></div>
+      <div class="acciones" style="margin-top:6px">
+        <button class="btn btn-amarillo btn-mini" onclick="verPista(1)">💡 Ver pista</button>
+        <button class="btn btn-teal btn-mini" onclick="guardarPaso(1)">💾 Guardar paso 1</button>
+      </div>
+      <div class="pista-box" id="pista1">Pista del tablero: <b>[Empleados rurales]</b> — los trabajadores temporales del campo que cosechan a mano.</div>
+    </div>
+
+    <div class="plantilla-paso" id="tp2">
+      <div class="num">2</div><span class="sello">✅</span>
+      <h3 style="margin-top:6px">Impacto económico</h3>
+      <div class="campo"><textarea id="ta2" rows="2" placeholder="¿Qué pasa con el dinero y los empleos? Usa números si puedes."></textarea></div>
+      <div class="acciones" style="margin-top:6px">
+        <button class="btn btn-amarillo btn-mini" onclick="verPista(2)">💡 Ver pista</button>
+        <button class="btn btn-teal btn-mini" onclick="guardarPaso(2)">💾 Guardar paso 2</button>
+      </div>
+      <div class="pista-box" id="pista2">Pista del tablero: <b>Reducción de 50 empleos temporales en temporada alta.</b></div>
+    </div>
+
+    <div class="plantilla-paso" id="tp3">
+      <div class="num">3</div><span class="sello">✅</span>
+      <h3 style="margin-top:6px">Consecuencia social</h3>
+      <div class="campo"><textarea id="ta3" rows="2" placeholder="¿Qué le pasa a las familias y al pueblo cercano?"></textarea></div>
+      <div class="acciones" style="margin-top:6px">
+        <button class="btn btn-amarillo btn-mini" onclick="verPista(3)">💡 Ver pista</button>
+        <button class="btn btn-teal btn-mini" onclick="guardarPaso(3)">💾 Guardar paso 3</button>
+      </div>
+      <div class="pista-box" id="pista3">Pista del tablero: <b>Menos ingresos para familias campesinas → caída en el consumo local</b> (las tienditas del pueblo también venden menos).</div>
+    </div>
+
+    <div class="plantilla-paso" id="tp4">
+      <div class="num">4</div><span class="sello">✅</span>
+      <h3 style="margin-top:6px">Alternativa responsable</h3>
+      <div class="campo"><textarea id="ta4" rows="2" placeholder="¿Qué haría una empresa que cuida a su gente Y a sus finanzas?"></textarea></div>
+      <div class="acciones" style="margin-top:6px">
+        <button class="btn btn-amarillo btn-mini" onclick="verPista(4)">💡 Ver pista</button>
+        <button class="btn btn-teal btn-mini" onclick="guardarPaso(4)">💾 Guardar paso 4</button>
+      </div>
+      <div class="pista-box" id="pista4">Pista del tablero: <b>Inversión en capacitación para operar las máquinas + apoyo a emprendimientos locales.</b> ¡Así los empleados pasan de cosechar a mano a ser técnicos!</div>
+    </div>
+
+    <div class="acciones"><button class="btn btn-morado" onclick="abrirCuaderno()">📓 Ver todo mi análisis junto (para copiar)</button></div>
+  </div>
+
+  <div class="card m3">
+    <span class="etiqueta et-verde">Figura para el cuaderno</span>
+    <h2>🕸️ El ecosistema empresarial: ¡todo está conectado!</h2>
+    <p class="texto">Toca cada caja del diagrama para descubrir qué significa. Luego cópialo en tu cuaderno.</p>
+    <div style="position:relative">
+      <div class="ilustracion" id="svgEco" style="background:#fff"></div>
+      <div id="tooltipEco"></div>
+    </div>
+    <p class="pie-fig">Figura 3. [EMPRESA] → (decisión de costos) → [IMPACTO]: las ondas llegan a proveedores, empleados, comunidad y estabilidad social.</p>
+    <div class="acciones"><button class="btn btn-teal" id="btnEco" onclick="premioEstrella('diagrama','🕸️ ¡Exploraste el ecosistema!')" disabled>⭐ Ya toqué todas las cajas del diagrama</button></div>
+  </div>
+
+  <div class="card m3">
+    <span class="etiqueta et-morado">¡Ordena la historia!</span>
+    <h2>🔀 La cadena del impacto</h2>
+    <p class="texto">Toca las tarjetas <b>en el orden correcto</b>, desde la decisión de la empresa hasta el efecto en la comunidad:</p>
+    <div class="orden-zona" id="ordenZona"></div>
+    <div class="secuencia" id="secuencia"></div>
+    <div class="feedback" id="fbOrden"></div>
+    <div class="acciones"><button class="btn btn-amarillo btn-mini" onclick="reiniciarOrden()">🔄 Reiniciar</button></div>
+  </div>
+
+  <div class="card m3">
+    <span class="etiqueta et-verde">Ejemplo real verificado</span>
+    <h2>🇵🇪 Sí se puede: la textilera peruana (2024)</h2>
+    <div class="ilustracion" id="svgTextil"></div>
+    <p class="pie-fig">Figura 4. Empleados reconvertidos: de la costura tradicional a la operación de máquinas modernas.</p>
+    <p class="texto">En 2024, una empresa textil de Perú iba a despedir trabajadores por la llegada de nuevas máquinas. ¿Qué hizo en su lugar? <b>Reconvirtió a sus empleados en operarios de máquinas</b>: los capacitó en vez de despedirlos. El resultado: la empresa se volvió más eficiente <b>y</b> las familias conservaron su ingreso.</p>
+    <div class="dato-curioso" style="border-left-color:var(--teal);background:#F2FFFC">📚 <b>Fuente:</b> CEPAL (Comisión Económica para América Latina y el Caribe). <b>Lección:</b> la tecnología no tiene por qué ser enemiga de la gente: ¡depende de las decisiones de quienes dirigen!</div>
+  </div>
+</section>
+
+<!-- ================= RETO FINAL ================= -->
+<section id="reto" class="tab">
+  <div class="card reto">
+    <span class="etiqueta et-morado">Reto final</span>
+    <h2>🏆 El Gran Quiz del Taller</h2>
+    <p class="texto">5 preguntas para demostrar que eres un <b>crack de los negocios responsables</b>. Necesitas 4 o más para ganar la estrella dorada… ¡y confeti! 🎊</p>
+    <div id="contenedorQuiz"></div>
+    <div class="acciones"><button class="btn btn-morado" id="btnQuiz" onclick="calificarQuiz()">📩 Enviar mis respuestas</button>
+    <span id="fbQuiz" class="feedback" style="font-size:1.05rem"></span></div>
+    <div class="nota-final" id="notaFinal">
+      <div class="puntaje" id="puntajeFinal"></div>
+      <div id="mensajeFinal" style="font-weight:900;font-size:1.1rem"></div>
+    </div>
+  </div>
+
+  <div class="card reto">
+    <span class="etiqueta et-morado">Cierre</span>
+    <h2>🎒 Lo que te llevas a casa</h2>
+    <p class="texto">✔ <b>Mc = Precio − Costo Variable</b>: lo que aporta cada producto.<br>
+    ✔ <b>PE = Costos Fijos ÷ Mc</b>: cuántas unidades hay que vender para quedar "en paz".<br>
+    ✔ Toda decisión de empresa genera <b>ondas</b> que llegan a empleados, proveedores, comunidad y a la estabilidad social.<br>
+    ✔ Existen <b>alternativas responsables</b>: capacitar, renegociar, ahorrar en lo no esencial… ¡antes que despedir!</p>
+    <div class="acciones"><button class="btn btn-tinta" onclick="abrirCuaderno()">📓 Copiar mi resumen del taller</button>
+    <button class="btn btn-tomate" onclick="irTab('inicio')">🏠 Volver al inicio</button></div>
+  </div>
+</section>
+
+</main>
+
+<footer>🛠️ Taller educativo · Módulo 2: La Mecánica de la Rentabilidad · Módulo 3: El Ecosistema Empresarial y sus Actores · Hecho con ❤️ para jóvenes emprendedores de Latinoamérica</footer>
+
+<div class="estrella-ganada" id="estrellaPop"></div>
+
+<div id="modalCuaderno">
+  <div class="modal-caja">
+    <button class="cerrar-modal" onclick="cerrarCuaderno()">✕</button>
+    <h2>📓 Mi resumen del cuaderno</h2>
+    <p class="texto">Selecciona y copia este texto a tu cuaderno digital (o imprímelo):</p>
+    <pre id="textoCuaderno"></pre>
+    <div class="acciones">
+      <button class="btn btn-teal" onclick="copiarCuaderno()">📋 Copiar al portapapeles</button>
+      <button class="btn btn-amarillo" onclick="window.print()">🖨️ Imprimir</button>
+    </div>
+    <p class="aviso" id="avisoCopiado"></p>
+  </div>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
+
+<script>
+/* ============ UTILIDADES ============ */
+const fmt = n => new Intl.NumberFormat('es-CO',{maximumFractionDigits:0}).format(n);
+function irTab(id){
+  document.querySelectorAll('section.tab').forEach(s=>s.classList.remove('visible'));
+  document.getElementById(id).classList.add('visible');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('activo', b.dataset.tab===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>irTab(b.dataset.tab)));
+
+/* ============ ESTRELLAS ============ */
+const estrellas = {};
+let totalEstrellas = 0;
+function premioEstrella(clave, msg){
+  if(estrellas[clave]) return;
+  estrellas[clave]=true; totalEstrellas++;
+  document.getElementById('txtEstrellas').textContent = totalEstrellas+' / 6 estrellas';
+  document.getElementById('barraProgreso').style.width = (totalEstrellas/6*100)+'%';
+  const pop = document.getElementById('estrellaPop');
+  pop.innerHTML = '⭐ ¡ESTRELLA GANADA! ⭐<br><span style="font-weight:700;font-size:.95rem">'+msg+'</span>';
+  pop.classList.add('mostrar');
+  setTimeout(()=>pop.classList.remove('mostrar'),1800);
+  if(totalEstrellas===6) setTimeout(()=>lanzarConfetti(true),600);
+}
+
+/* ============ MÓDULO 2: PIZARRA ============ */
+let pasoActual = 0;
+function siguientePaso(){
+  pasoActual++;
+  const el = document.getElementById('paso'+pasoActual);
+  if(el) el.classList.add('muestra');
+  if(pasoActual>=4){
+    document.getElementById('btnPaso').disabled = true;
+    document.getElementById('btnPaso').textContent = '✅ Tablero completo';
+    document.getElementById('btnCopie').disabled = false;
+  }
+}
+
+/* ============ MÓDULO 2: CALCULADORA ============ */
+const BASE_PE = 500;
+function calcular(){
+  const precio = parseFloat(document.getElementById('inpPrecio').value)||0;
+  const cv = parseFloat(document.getElementById('inpCV').value)||0;
+  const cf = parseFloat(document.getElementById('inpCF').value)||0;
+  const margen = precio - cv;
+  const outM = document.getElementById('outMargen');
+  const outPE = document.getElementById('outPE');
+  const outMes = document.getElementById('outMes');
+  const aviso = document.getElementById('avisoCalc');
+  if(margen<=0){
+    outM.textContent='Bs. '+fmt(margen);
+    outPE.textContent='¡Imposible!';
+    outMes.textContent='El precio no cubre ni el costo de hacer la arepa 😱';
+    aviso.style.display='block';
+    aviso.innerHTML='🚨 <b>¡Negocio en peligro!</b> Si el margen es 0 o negativo, cada arepa vendida hace perder dinero. Nunca se alcanza el punto de equilibrio.';
+    document.getElementById('barNuevo').style.width='100%';
+    document.getElementById('lblNuevo').textContent='∞';
+    return;
+  }
+  const pe = cf/margen;
+  const peRed = Math.ceil(pe);
+  outM.textContent='Bs. '+fmt(margen);
+  outPE.textContent=fmt(peRed)+' arepas';
+  outMes.textContent='≈ '+Math.ceil(peRed/30)+' arepas al día (30 días)';
+  aviso.style.display='block';
+  if(peRed===BASE_PE) aviso.innerHTML='✅ <b>Caso original:</b> el punto de equilibrio es exactamente 500 arepas.';
+  else if(peRed>BASE_PE) aviso.innerHTML='📈 <b>Ojo:</b> ahora Doña Luz debe vender <b>'+fmt(peRed-BASE_PE)+' arepas más</b> al mes que antes. Más presión sobre el negocio y los empleos.';
+  else aviso.innerHTML='🎉 <b>¡Mejor!</b> Ahora necesita <b>'+fmt(BASE_PE-peRed)+' arepas menos</b> para quedar en paz. El negocio respira mejor.';
+  const maxBar = Math.max(BASE_PE, peRed);
+  document.getElementById('barBase').style.width = (BASE_PE/maxBar*100)+'%';
+  document.getElementById('barNuevo').style.width = (peRed/maxBar*100)+'%';
+  document.getElementById('lblBase').textContent = fmt(BASE_PE);
+  document.getElementById('lblNuevo').textContent = fmt(peRed);
+}
+function preset(p,cv,cf,btn){
+  document.getElementById('inpPrecio').value=p;
+  document.getElementById('inpCV').value=cv;
+  document.getElementById('inpCF').value=cf;
+  document.querySelectorAll('#modulo2 .chips .chip')[0].closest('.chips').querySelectorAll('.chip').forEach(c=>c.classList.remove('sel'));
+  if(btn) btn.classList.add('sel');
+  calcular();
+}
+calcular();
+
+/* ============ MÓDULO 2: EJERCICIO COLABORATIVO ============ */
+const respuestasEj = {A:7200, B:7800, C:577};
+function chequear(letra){
+  const inp = document.getElementById('resp'+letra);
+  const fb = document.getElementById('fb'+letra);
+  const caja = document.getElementById('mp'+letra);
+  const val = parseFloat(inp.value);
+  let correcto = false;
+  if(letra==='C') correcto = Math.abs(val-respuestasEj.C)<=2;
+  else correcto = val===respuestasEj[letra];
+  if(correcto){
+    fb.textContent='✅ ¡Correcto! '+(letra==='A'?'6.000 × 1,20 = Bs. 7.200':letra==='B'?'15.000 − 7.200 = Bs. 7.800 de margen':'4.500.000 ÷ 7.800 ≈ 577 arepas. ¡Hay que vender 77 arepas MÁS al mes!');
+    fb.className='feedback bien'; caja.classList.add('ok'); caja.classList.remove('mal');
+    if(!respuestasEj['ok'+letra]){ respuestasEj['ok'+letra]=true; }
+    if(respuestasEj.okA&&respuestasEj.okB&&respuestasEj.okC) premioEstrella('ejercicio','🌽 ¡Resolviste el caso de la masarepa!');
+  }else{
+    fb.textContent='❌ Inténtalo de nuevo. Pista: '+(letra==='A'?'multiplica 6.000 × 1,20':letra==='B'?'resta tu respuesta A de 15.000':'divide 4.500.000 entre 7.800 y redondea');
+    fb.className='feedback mal'; caja.classList.add('mal');
+    setTimeout(()=>caja.classList.remove('mal'),450);
+  }
+}
+
+/* ============ MÓDULO 2: TABLA + IDEAS ============ */
+function toggleDetalle(id,fila){
+  const d = document.getElementById(id);
+  d.style.display = d.style.display==='none' ? 'table-row':'none';
+}
+let contadorIdeas = 0;
+function pintarIdea(texto){
+  contadorIdeas++;
+  const div = document.createElement('div');
+  div.className='idea'; div.textContent = contadorIdeas+'. '+texto;
+  document.getElementById('listaIdeas').appendChild(div);
+  if(contadorIdeas>=2) document.getElementById('btnIdeas').disabled=false;
+}
+function agregarIdea(texto,chip){
+  if(chip.classList.contains('sel')) return;
+  chip.classList.add('sel');
+  pintarIdea(texto);
+}
+function agregarIdeaPropia(){
+  const inp = document.getElementById('inpIdea');
+  const t = inp.value.trim();
+  if(!t) return;
+  pintarIdea(t+' ✨(idea de tu equipo)');
+  inp.value='';
+}
+
+/* ============ MÓDULO 3: PLANTILLA ============ */
+const pasosGuardados = {};
+function verPista(n){ document.getElementById('pista'+n).classList.toggle('abierta'); }
+function guardarPaso(n){
+  const ta = document.getElementById('ta'+n);
+  if(!ta.value.trim()){ ta.focus(); ta.style.borderColor='var(--mal)'; setTimeout(()=>ta.style.borderColor='',1200); return; }
+  document.getElementById('tp'+n).classList.add('guardado');
+  pasosGuardados[n]=ta.value.trim();
+  if(Object.keys(pasosGuardados).length===4) premioEstrella('plantilla','📝 ¡Completaste la plantilla de Café Altura!');
+}
+
+/* ============ MÓDULO 3: JUEGO DE ORDEN ============ */
+const ordenCorrecto = [
+  {t:'🏢 La EMPRESA toma una decisión de costos', id:1},
+  {t:'📦 Se afecta a los PROVEEDORES y sus pedidos', id:2},
+  {t:'👷 Cambia el trabajo de los EMPLEADOS', id:3},
+  {t:'🏘️ Lo siente la COMUNIDAD y la estabilidad social', id:4}
+];
+let ordenElegidos = [];
+function reiniciarOrden(){
+  ordenElegidos=[];
+  document.getElementById('secuencia').innerHTML='';
+  document.getElementById('fbOrden').textContent='';
+  const zona = document.getElementById('ordenZona');
+  zona.innerHTML='';
+  const mezclado = [...ordenCorrecto].sort(()=>Math.random()-0.5);
+  mezclado.forEach(item=>{
+    const div = document.createElement('div');
+    div.className='tarjeta-orden'; div.textContent=item.t; div.dataset.id=item.id;
+    div.addEventListener('click',()=>elegirOrden(div,item));
+    zona.appendChild(div);
+  });
+}
+function elegirOrden(div,item){
+  const esperado = ordenCorrecto[ordenElegidos.length];
+  const fb = document.getElementById('fbOrden');
+  if(item.id===esperado.id){
+    ordenElegidos.push(item);
+    div.classList.add('elegida');
+    const pasoDiv = document.createElement('div');
+    pasoDiv.className='paso-seq';
+    pasoDiv.innerHTML='<span>'+(ordenElegidos.length)+'</span> '+item.t + (ordenElegidos.length<4?' ➜':' 🎉');
+    document.getElementById('secuencia').appendChild(pasoDiv);
+    fb.className='feedback bien'; fb.textContent='¡Bien! Sigue…';
+    if(ordenElegidos.length===4){ fb.textContent='✅ ¡Cadena completa! Así viaja el impacto de una decisión empresarial.'; premioEstrella('orden','🔀 ¡Ordenaste la cadena del impacto!'); }
+  }else{
+    div.classList.add('error');
+    fb.className='feedback mal'; fb.textContent='❌ Ups… ¿qué pasa PRIMERO? Piensa: primero alguien decide.';
+    setTimeout(()=>div.classList.remove('error'),450);
+  }
+}
+reiniciarOrden();
+
+/* ============ QUIZ ============ */
+const quiz = [
+  {p:'1. Si el precio de una arepa es Bs. 15.000 y su costo variable es Bs. 6.000, el margen de contribución unitario es…',
+   o:['Bs. 21.000','Bs. 9.000','Bs. 6.000'], c:1,
+   exp:'Mc = Precio − Costo Variable = 15.000 − 6.000 = Bs. 9.000.'},
+  {p:'2. El punto de equilibrio es el momento en que la empresa…',
+   o:['Gana el doble de dinero','Pierde todo','No gana ni pierde: ingresos = costos'], c:2,
+   exp:'En el punto de equilibrio los ingresos alcanzan exactamente para cubrir todos los costos.'},
+  {p:'3. Si los costos fijos SUBEN y todo lo demás sigue igual, el punto de equilibrio…',
+   o:['Sube: hay que vender más unidades','Baja: hay que vender menos','No cambia nunca'], c:0,
+   exp:'PE = CF ÷ Mc. Si el numerador (CF) crece, el resultado crece: ¡más unidades por vender!'},
+  {p:'4. En el caso de Café Altura, una alternativa RESPONSABLE a automatizar es…',
+   o:['Despedir a todos sin avisar','Capacitar a los empleados para operar las máquinas y apoyar emprendimientos locales','Esconder las máquinas'], c:1,
+   exp:'Capacitar convierte el cambio tecnológico en oportunidad para las familias campesinas.'},
+  {p:'5. Las decisiones de una empresa afectan a…',
+   o:['Solo a sus dueños','Solo a los clientes','Proveedores, empleados, comunidad y estabilidad social: ¡a todo el ecosistema!'], c:2,
+   exp:'La empresa es parte de un ecosistema: cada decisión genera ondas en todos los actores.'}
+];
+let respuestasUsuario = new Array(quiz.length).fill(null);
+function pintarQuiz(){
+  const cont = document.getElementById('contenedorQuiz');
+  cont.innerHTML='';
+  quiz.forEach((q,i)=>{
+    const div = document.createElement('div');
+    div.className='pregunta'; div.id='preg'+i;
+    let html = '<div class="titulo-p">'+q.p+'</div>';
+    q.o.forEach((op,j)=>{
+      html += '<div class="opcion" data-p="'+i+'" data-o="'+j+'" onclick="marcarOpcion('+i+','+j+')"><span class="bolita"></span>'+op+'</div>';
+    });
+    html += '<div class="feedback" id="fbP'+i+'"></div>';
+    div.innerHTML=html;
+    cont.appendChild(div);
+  });
+}
+function marcarOpcion(pi,oi){
+  if(document.getElementById('btnQuiz').disabled) return;
+  respuestasUsuario[pi]=oi;
+  document.querySelectorAll('.opcion[data-p="'+pi+'"]').forEach(o=>o.style.borderColor='');
+  const sel = document.querySelector('.opcion[data-p="'+pi+'"][data-o="'+oi+'"]');
+  sel.style.borderColor='var(--morado)';
+}
+function calificarQuiz(){
+  if(respuestasUsuario.some(r=>r===null)){
+    document.getElementById('fbQuiz').textContent='⚠️ Responde todas las preguntas primero.';
+    document.getElementById('fbQuiz').className='feedback mal';
+    return;
+  }
+  let puntaje=0;
+  quiz.forEach((q,i)=>{
+    const opciones = document.querySelectorAll('.opcion[data-p="'+i+'"]');
+    opciones.forEach(o=>{
+      const j = parseInt(o.dataset.o);
+      if(j===q.c) o.classList.add('correcta');
+      else if(j===respuestasUsuario[i]) o.classList.add('incorrecta');
+    });
+    const fb = document.getElementById('fbP'+i);
+    if(respuestasUsuario[i]===q.c){ puntaje++; fb.className='feedback bien'; fb.textContent='✅ '+q.exp; }
+    else { fb.className='feedback mal'; fb.textContent='❌ '+q.exp; }
+  });
+  document.getElementById('btnQuiz').disabled=true;
+  const nota = document.getElementById('notaFinal');
+  nota.style.display='block';
+  document.getElementById('puntajeFinal').textContent = puntaje+' / 5';
+  const msg = puntaje===5?'🌟 ¡PERFECTO! Eres un genio de los negocios responsables.'
+    :puntaje>=4?'🎉 ¡Excelente! Ganas la estrella dorada del taller.'
+    :puntaje>=3?'👍 ¡Bien! Repasa los módulos y vuelve a intentarlo.'
+    :'📚 ¡No te rindas! Revisa el Módulo 2 y 3 e inténtalo otra vez.';
+  document.getElementById('mensajeFinal').textContent=msg;
+  if(puntaje>=4){ premioEstrella('quiz','🏆 ¡Superaste el reto final!'); lanzarConfetti(false); }
+  nota.scrollIntoView({behavior:'smooth',block:'center'});
+}
+pintarQuiz();
+
+/* ============ CONFETTI ============ */
+function lanzarConfetti(grande){
+  const cv = document.getElementById('confettiCanvas');
+  const ctx = cv.getContext('2d');
+  cv.style.display='block';
+  cv.width=innerWidth; cv.height=innerHeight;
+  const colores=['#FF6B4A','#17B8A6','#FFC145','#8B6CE7','#2E9E5B','#2D3142'];
+  const piezas=[];
+  const cantidad = grande?260:150;
+  for(let i=0;i<cantidad;i++){
+    piezas.push({x:Math.random()*cv.width, y:-20-Math.random()*cv.height*0.5,
+      w:6+Math.random()*8, h:8+Math.random()*10,
+      vy:2+Math.random()*3.5, vx:-1.5+Math.random()*3,
+      rot:Math.random()*Math.PI, vr:-0.1+Math.random()*0.2,
+      color:colores[Math.floor(Math.random()*colores.length)]});
+  }
+  let frames=0;
+  function animar(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    piezas.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr; p.vy+=0.02;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.fillStyle=p.color; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    });
+    frames++;
+    if(frames<340) requestAnimationFrame(animar);
+    else { ctx.clearRect(0,0,cv.width,cv.height); cv.style.display='none'; }
+  }
+  animar();
+}
+
+/* ============ CUADERNO / MODAL ============ */
+function abrirCuaderno(){
+  const t = document.getElementById('textoCuaderno');
+  t.textContent =
+`✏️ MI CUADERNO DEL TALLER — La Mecánica de la Rentabilidad
+=====================================================
+CASO: Arepas Doña Luz (Caracas, Venezuela)
+· Precio de venta: Bs. 15.000 por arepa
+· Costo variable: Bs. 6.000 (masarepa, queso, mano de obra)
+· Costos fijos mensuales: Bs. 4.500.000 (arriendo, servicios)
+
+PROCEDIMIENTO (copiado del tablero):
+1) Margen de Contribución Unitario = Precio − Costo Variable
+   Mc = 15.000 − 6.000 = Bs. 9.000
+2) Punto de Equilibrio = Costos Fijos ÷ Margen Unitario
+   PE = 4.500.000 ÷ 9.000 = 500 arepas
+
+EJERCICIO: masarepa sube 20%
+· Nuevo costo variable = 6.000 × 1,20 = Bs. 7.200
+· Nuevo margen = 15.000 − 7.200 = Bs. 7.800
+· Nuevo PE = 4.500.000 ÷ 7.800 ≈ 577 arepas
+  (La tabla del tablero usa 625, que corresponde a un alza del 30%)
+
+TABLA DE ESCENARIOS:
+· Sin cambios → 500 arepas → Empleo estable
+· Sube costo de masarepa → 625 arepas → Riesgo de recorte
+· Baja precio de venta → 750 arepas → Mayor riesgo
+
+REFLEXIÓN GRUPAL (nuestras ideas):
+${Array.from(document.querySelectorAll('#listaIdeas .idea')).map(i=>'· '+i.textContent).join('\n')||'· (agrega tus ideas en el taller)'}
+
+=====================================================
+✏️ MÓDULO 3 — El Ecosistema Empresarial
+CASO: Café Altura (Chiapas, México)
+Decisión: automatizar la cosecha (−30% costos laborales)
+
+MI PLANTILLA DE ANÁLISIS:
+1. Actor afectado: ${pasosGuardados[1]||'[Empleados rurales]'}
+2. Impacto económico: ${pasosGuardados[2]||'Reducción de 50 empleos temporales en temporada alta.'}
+3. Consecuencia social: ${pasosGuardados[3]||'Menos ingresos para familias campesinas → caída en consumo local.'}
+4. Alternativa responsable: ${pasosGuardados[4]||'Capacitación para operar máquinas + apoyo a emprendimientos locales.'}
+
+DIAGRAMA: [EMPRESA] → (decisión de costos) → [IMPACTO]
+   ↓                              ↓
+Proveedores                  Empleados
+   ↓                              ↓
+Comunidad rural             Estabilidad social
+
+EJEMPLO REAL: Perú, 2024 — una textilera evitó despidos
+reconvirtiendo empleados en operarios de máquinas (fuente: CEPAL).`;
+  document.getElementById('modalCuaderno').classList.add('abierto');
+}
+function cerrarCuaderno(){ document.getElementById('modalCuaderno').classList.remove('abierto'); }
+function copiarCuaderno(){
+  const txt = document.getElementById('textoCuaderno').textContent;
+  navigator.clipboard.writeText(txt).then(()=>{
+    document.getElementById('avisoCopiado').textContent='✅ ¡Copiado! Pégalo donde quieras.';
+  }).catch(()=>{
+    document.getElementById('avisoCopiado').textContent='Selecciona el texto y usa Ctrl+C.';
+  });
+}
+document.getElementById('modalCuaderno').addEventListener('click',e=>{
+  if(e.target.id==='modalCuaderno') cerrarCuaderno();
+});
+
+/* ============ ILUSTRACIONES SVG ============ */
+document.getElementById('svgArepas').innerHTML = `
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Puesto de arepas Doña Luz">
+  <defs>
+    <linearGradient id="cieloA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8ED6FF"/><stop offset="1" stop-color="#E8F7FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#cieloA)"/>
+  <circle cx="700" cy="70" r="38" fill="#FFD84D"/><circle cx="700" cy="70" r="52" fill="#FFD84D" opacity=".25"/>
+  <path d="M0 200 L120 90 L260 200 Z" fill="#3E7C59"/><path d="M180 200 L340 70 L520 200 Z" fill="#2F6146"/><path d="M440 200 L580 100 L740 200 Z" fill="#3E7C59"/>
+  <text x="330" y="120" font-family="Nunito" font-size="14" font-weight="900" fill="#EAF6EE">El Ávila</text>
+  <rect x="60" y="170" width="44" height="60" fill="#C9B8A8"/><rect x="120" y="150" width="36" height="80" fill="#B7A79A"/>
+  <rect x="620" y="160" width="40" height="70" fill="#C9B8A8"/><rect x="676" y="180" width="34" height="50" fill="#B7A79A"/>
+  <rect x="0" y="230" width="800" height="220" fill="#E9D9C3"/><rect x="0" y="230" width="800" height="12" fill="#D8C4A8"/>
+  <!-- Doña Luz (detrás del mostrador) -->
+  <g>
+    <circle cx="560" cy="205" r="26" fill="#C68642"/>
+    <path d="M534 200 Q534 172 560 172 Q586 172 586 200 Q586 186 560 184 Q534 186 534 200Z" fill="#3B2A20"/>
+    <circle cx="560" cy="170" r="9" fill="#3B2A20"/>
+    <circle cx="551" cy="203" r="3" fill="#2D3142"/><circle cx="569" cy="203" r="3" fill="#2D3142"/>
+    <path d="M551 214 Q560 221 569 214" stroke="#2D3142" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <rect x="536" y="232" width="48" height="70" rx="16" fill="#FF6B4A"/>
+    <rect x="540" y="240" width="40" height="58" rx="10" fill="#FFF3E2"/>
+    <rect x="516" y="238" width="14" height="46" rx="7" fill="#C68642" transform="rotate(18 516 238)"/>
+    <rect x="590" y="238" width="14" height="46" rx="7" fill="#C68642" transform="rotate(-18 604 238)"/>
+  </g>
+  <!-- toldo -->
+  <rect x="150" y="140" width="10" height="170" fill="#8B5E3C"/><rect x="640" y="140" width="10" height="170" fill="#8B5E3C"/>
+  <g>
+    <path d="M130 140 H670 L640 190 H160 Z" fill="#fff"/>
+    <path d="M130 140 H198 L186 190 H160 Z" fill="#E0492F"/>
+    <path d="M266 140 H334 L322 190 H254 Z" fill="#E0492F"/>
+    <path d="M402 140 H470 L458 190 H390 Z" fill="#E0492F"/>
+    <path d="M538 140 H606 L594 190 H526 Z" fill="#E0492F"/>
+    <circle cx="173" cy="192" r="12" fill="#E0492F"/><circle cx="241" cy="192" r="12" fill="#fff"/><circle cx="309" cy="192" r="12" fill="#E0492F"/><circle cx="377" cy="192" r="12" fill="#fff"/><circle cx="445" cy="192" r="12" fill="#E0492F"/><circle cx="513" cy="192" r="12" fill="#fff"/><circle cx="581" cy="192" r="12" fill="#E0492F"/><circle cx="635" cy="192" r="12" fill="#fff"/>
+  </g>
+  <!-- letrero -->
+  <rect x="230" y="96" width="340" height="46" rx="12" fill="#2D3142"/>
+  <text x="400" y="127" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="26" fill="#FFC145">🫓 AREPAS DOÑA LUZ</text>
+  <!-- mostrador -->
+  <rect x="170" y="300" width="440" height="26" rx="8" fill="#A9713F"/>
+  <rect x="185" y="326" width="410" height="80" rx="10" fill="#8B5E3C"/>
+  <rect x="185" y="326" width="410" height="14" fill="#7A5133"/>
+  <!-- budare con arepas -->
+  <ellipse cx="300" cy="298" rx="86" ry="14" fill="#3A3A3A"/>
+  <ellipse cx="262" cy="290" rx="26" ry="10" fill="#F5C24E" stroke="#D99B2B" stroke-width="2"/>
+  <ellipse cx="318" cy="290" rx="26" ry="10" fill="#F5C24E" stroke="#D99B2B" stroke-width="2"/>
+  <ellipse cx="290" cy="282" rx="26" ry="10" fill="#E8B23C" stroke="#D99B2B" stroke-width="2"/>
+  <path d="M258 268 q4 -12 0 -22 M290 260 q4 -12 0 -22 M322 268 q4 -12 0 -22" stroke="#fff" stroke-width="3" fill="none" opacity=".8" stroke-linecap="round"/>
+  <!-- pila de arepas -->
+  <ellipse cx="480" cy="296" rx="52" ry="10" fill="#FFF6EA" stroke="#D9CFBE" stroke-width="2"/>
+  <ellipse cx="480" cy="288" rx="30" ry="9" fill="#F5C24E" stroke="#D99B2B" stroke-width="2"/>
+  <ellipse cx="480" cy="280" rx="30" ry="9" fill="#EFC050" stroke="#D99B2B" stroke-width="2"/>
+  <ellipse cx="480" cy="272" rx="30" ry="9" fill="#F5C24E" stroke="#D99B2B" stroke-width="2"/>
+  <path d="M505 268 q-6 -16 4 -22 q-2 14 6 16" fill="#fff" opacity=".85"/>
+  <!-- etiqueta de precio -->
+  <g transform="rotate(-6 640 330)">
+    <rect x="590" y="330" width="130" height="52" rx="10" fill="#FFC145" stroke="#E8A800" stroke-width="3"/>
+    <text x="655" y="352" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="15" fill="#2D3142">Bs. 15.000</text>
+    <text x="655" y="372" text-anchor="middle" font-family="Nunito" font-weight="700" font-size="12" fill="#5a4a1a">cada arepa 🧀</text>
+  </g>
+  <text x="120" y="428" font-family="Patrick Hand" font-size="17" fill="#8a7a60">Caracas, Venezuela · ¡La arepa 501 es la primera ganancia!</text>
+</svg>`;
+
+document.getElementById('svgCafe').innerHTML = `
+<svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Finca cafetalera Café Altura en Chiapas">
+  <defs>
+    <linearGradient id="cieloC" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A8E4FF"/><stop offset="1" stop-color="#F0FBFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#cieloC)"/>
+  <circle cx="110" cy="80" r="40" fill="#FFD84D"/><circle cx="110" cy="80" r="56" fill="#FFD84D" opacity=".25"/>
+  <path d="M0 210 L150 70 L330 210 Z" fill="#4C8C62"/><path d="M240 210 L420 50 L620 210 Z" fill="#3A7350"/><path d="M520 210 L680 90 L800 210 Z" fill="#4C8C62"/>
+  <path d="M0 210 H800 V450 H0 Z" fill="#7FB069"/>
+  <path d="M0 210 Q200 250 400 220 T800 240 V210 Z" fill="#6FA25A"/>
+  <!-- caseta -->
+  <g>
+    <rect x="600" y="240" width="150" height="110" fill="#B5825A"/>
+    <path d="M585 240 L675 185 L765 240 Z" fill="#8C4A32"/>
+    <rect x="655" y="290" width="40" height="60" fill="#6B4226"/>
+    <rect x="598" y="212" width="154" height="30" rx="8" fill="#2D3142"/>
+    <text x="675" y="233" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="16" fill="#FFC145">☕ CAFÉ ALTURA</text>
+  </g>
+  <!-- sacos -->
+  <g>
+    <rect x="540" y="315" width="42" height="48" rx="12" fill="#C9A26B" stroke="#A37F4A" stroke-width="3"/>
+    <text x="561" y="345" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="14" fill="#6B4226">C</text>
+    <rect x="500" y="328" width="38" height="40" rx="10" fill="#C9A26B" stroke="#A37F4A" stroke-width="3"/>
+  </g>
+  <!-- filas de cafetos -->
+  <g>
+    ${[[70,330],[190,345],[320,335],[80,400],[220,415],[360,405],[480,415]].map(([x,y])=>`
+      <g transform="translate(${x} ${y})">
+        <ellipse cx="0" cy="10" rx="52" ry="12" fill="#4E8C4A" opacity=".35"/>
+        <circle cx="-24" cy="0" r="22" fill="#3F7D3A"/><circle cx="10" cy="-8" r="26" fill="#4C9445"/><circle cx="34" cy="4" r="20" fill="#3F7D3A"/>
+        <circle cx="-28" cy="-6" r="4" fill="#D64541"/><circle cx="-14" cy="4" r="4" fill="#D64541"/><circle cx="6" cy="-16" r="4" fill="#E05A4E"/><circle cx="20" cy="-2" r="4" fill="#D64541"/><circle cx="36" cy="-4" r="4" fill="#E05A4E"/><circle cx="30" cy="10" r="4" fill="#D64541"/>
+      </g>`).join('')}
+  </g>
+  <!-- campesino -->
+  <g transform="translate(410 240)">
+    <ellipse cx="0" cy="112" rx="40" ry="9" fill="#000" opacity=".15"/>
+    <path d="M-38 14 Q0 -8 38 14 Q0 4 -38 14Z" fill="#E0B25C"/>
+    <path d="M-16 12 Q0 -14 16 12 Z" fill="#C9963F"/>
+    <circle cx="0" cy="30" r="17" fill="#B5713D"/>
+    <circle cx="-6" cy="28" r="2.4" fill="#2D3142"/><circle cx="6" cy="28" r="2.4" fill="#2D3142"/>
+    <path d="M-6 36 Q0 41 6 36" stroke="#2D3142" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <rect x="-17" y="48" width="34" height="46" rx="12" fill="#FFF3E2"/>
+    <rect x="-17" y="60" width="34" height="26" fill="#4C9445"/>
+    <rect x="-13" y="94" width="10" height="18" rx="4" fill="#5A7FBF"/><rect x="3" y="94" width="10" height="18" rx="4" fill="#5A7FBF"/>
+    <rect x="14" y="50" width="11" height="34" rx="5.5" fill="#B5713D" transform="rotate(-24 14 50)"/>
+    <rect x="-26" y="52" width="11" height="32" rx="5.5" fill="#B5713D" transform="rotate(20 -26 52)"/>
+    <path d="M28 66 q26 4 24 26 q-2 18 -26 16 q-16 -2 -14 -18 Z" fill="#C9A26B" stroke="#8C6B3F" stroke-width="3"/>
+    <circle cx="38" cy="76" r="4" fill="#D64541"/><circle cx="48" cy="82" r="4" fill="#E05A4E"/><circle cx="40" cy="88" r="4" fill="#D64541"/>
+  </g>
+  <text x="90" y="440" font-family="Patrick Hand" font-size="17" fill="#3E5C36">Chiapas, México · 50 familias trabajan cada temporada alta de cosecha</text>
+</svg>`;
+
+document.getElementById('svgEco').innerHTML = `
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama del ecosistema empresarial">
+  <defs>
+    <marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#2D3142"/>
+    </marker>
+  </defs>
+  <rect width="800" height="520" fill="#FFFDF6"/>
+  <!-- conexiones -->
+  <g stroke="#2D3142" stroke-width="3" fill="none" marker-end="url(#flecha)">
+    <path d="M400 92 V150"/>
+    <path d="M340 210 C260 240 220 260 200 292"/>
+    <path d="M460 210 C540 240 580 260 600 292"/>
+    <path d="M200 366 V416"/>
+    <path d="M600 366 V416"/>
+  </g>
+  <text x="415" y="128" font-family="Patrick Hand" font-size="17" fill="#E0492F">(toma de decisión de costos)</text>
+  <!-- nodos -->
+  <g class="nodo" data-info="🏢 La EMPRESA toma decisiones para ahorrar costos, como automatizar la cosecha. Cada decisión lanza una 'onda' a todo el ecosistema.">
+    <rect x="300" y="30" width="200" height="62" rx="16" fill="#2D3142"/>
+    <text x="400" y="68" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="20" fill="#fff">🏢 EMPRESA</text>
+  </g>
+  <g class="nodo" data-info="💥 El IMPACTO es el efecto real de la decisión: menos empleos temporales, cambios en los pedidos a proveedores y en la vida del pueblo.">
+    <rect x="300" y="150" width="200" height="60" rx="16" fill="#FF6B4A"/>
+    <text x="400" y="187" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="18" fill="#fff">💥 IMPACTO</text>
+  </g>
+  <g class="nodo" data-info="📦 Los PROVEEDORES venden insumos a la empresa (empacas, herramientas, transporte). Si la empresa cambia, sus pedidos también cambian.">
+    <rect x="90" y="292" width="220" height="74" rx="16" fill="#FFC145"/>
+    <text x="200" y="325" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="18" fill="#2D3142">📦 PROVEEDORES</text>
+    <text x="200" y="350" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="700" fill="#5a4a1a">venden insumos y servicios</text>
+  </g>
+  <g class="nodo" data-info="👷 Los EMPLEADOS reciben salario y sostienen a sus familias. Capacitarlos para operar máquinas es la alternativa responsable (ejemplo: textilera peruana, CEPAL 2024).">
+    <rect x="490" y="292" width="220" height="74" rx="16" fill="#17B8A6"/>
+    <text x="600" y="325" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="18" fill="#fff">👷 EMPLEADOS</text>
+    <text x="600" y="350" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="700" fill="#E4FBF6">trabajo e ingreso familiar</text>
+  </g>
+  <g class="nodo" data-info="🏘️ La COMUNIDAD RURAL vive de lo que gastan los empleados. Menos salarios = menos compras en tiendas locales = el pueblo entero lo siente.">
+    <rect x="90" y="416" width="220" height="74" rx="16" fill="#8B6CE7"/>
+    <text x="200" y="449" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="18" fill="#fff">🏘️ COMUNIDAD RURAL</text>
+    <text x="200" y="474" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="700" fill="#EDE7FF">consumo y vida del pueblo</text>
+  </g>
+  <g class="nodo" data-info="⚖️ La ESTABILIDAD SOCIAL existe cuando las familias tienen ingresos y oportunidades. Una empresa responsable la cuida: ¡todos ganan!">
+    <rect x="490" y="416" width="220" height="74" rx="16" fill="#2E9E5B"/>
+    <text x="600" y="449" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="18" fill="#fff">⚖️ ESTABILIDAD SOCIAL</text>
+    <text x="600" y="474" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="700" fill="#DDF5E6">paz y bienestar para todos</text>
+  </g>
+</svg>`;
+
+/* tooltip del diagrama */
+const nodosVisitados = new Set();
+const tooltipEco = document.getElementById('tooltipEco');
+document.querySelectorAll('#svgEco .nodo').forEach(nodo=>{
+  nodo.addEventListener('click', e=>{
+    tooltipEco.textContent = nodo.dataset.info;
+    tooltipEco.style.display='block';
+    const rect = nodo.getBoundingClientRect();
+    const padre = tooltipEco.parentElement.getBoundingClientRect();
+    let left = rect.left - padre.left + rect.width/2 - 140;
+    left = Math.max(6, Math.min(left, padre.width-290));
+    tooltipEco.style.left = left+'px';
+    tooltipEco.style.top = (rect.bottom - padre.top + 8)+'px';
+    nodosVisitados.add(nodo.dataset.info);
+    if(nodosVisitados.size>=6 && !document.getElementById('btnEco').disabled){
+      document.getElementById('btnEco').disabled=false;
+      premioEstrella('diagrama','🕸️ ¡Exploraste el ecosistema!');
+    }
+  });
+});
+document.addEventListener('click', e=>{
+  if(!e.target.closest('.nodo')) tooltipEco.style.display='none';
+});
+
+document.getElementById('svgTextil').innerHTML = `
+<svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Textilera peruana: empleados capacitados en máquinas">
+  <rect width="800" height="320" fill="#F2FFFC"/>
+  <rect x="40" y="60" width="330" height="200" rx="18" fill="#FFE9DE" stroke="#FF6B4A" stroke-width="4"/>
+  <text x="205" y="95" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="18" fill="#E0492F">ANTES 😟</text>
+  <rect x="90" y="130" width="70" height="55" rx="8" fill="#B7A79A"/>
+  <circle cx="125" cy="118" r="14" fill="#C68642"/>
+  <rect x="185" y="130" width="70" height="55" rx="8" fill="#B7A79A"/>
+  <circle cx="220" cy="118" r="14" fill="#C68642"/>
+  <path d="M100 200 q25 12 50 0 M195 200 q25 12 50 0" stroke="#E0492F" stroke-width="3" fill="none" stroke-dasharray="5 5"/>
+  <text x="205" y="235" text-anchor="middle" font-family="Patrick Hand" font-size="16" fill="#8a5a44">Máquinas nuevas llegan… ¿despidos?</text>
+  <path d="M400 160 H460" stroke="#2D3142" stroke-width="5" fill="none" marker-end="url(#flecha2)"/>
+  <defs><marker id="flecha2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#2D3142"/></marker></defs>
+  <text x="432" y="140" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="14" fill="#2D3142">CAPACITAR</text>
+  <rect x="490" y="60" width="270" height="200" rx="18" fill="#E4FBF6" stroke="#17B8A6" stroke-width="4"/>
+  <text x="625" y="95" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="18" fill="#0E8577">DESPUÉS 🎉</text>
+  <rect x="530" y="140" width="80" height="50" rx="10" fill="#17B8A6"/>
+  <rect x="545" y="128" width="50" height="12" rx="6" fill="#0E8577"/>
+  <circle cx="660" cy="128" r="16" fill="#C68642"/>
+  <rect x="645" y="146" width="30" height="44" rx="10" fill="#2D3142"/>
+  <rect x="676" y="150" width="10" height="26" rx="5" fill="#C68642" transform="rotate(-30 676 150)"/>
+  <path d="M640 118 l-10 -12 M660 108 v-14 M680 118 l10 -12" stroke="#FFC145" stroke-width="4" stroke-linecap="round"/>
+  <text x="625" y="235" text-anchor="middle" font-family="Patrick Hand" font-size="16" fill="#0E8577">¡Operarios de máquina! (Perú, 2024 · CEPAL)</text>
+</svg>`;
+</script>
+</body>
+</html>
